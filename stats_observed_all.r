@@ -10,19 +10,6 @@ library(NWCCompare)
 # enddate <- "2013-10-01"
 # stats<-"GOF,GOFMonth,magnifSeven,magStat,flowStat,durStat,timStat,rateStat,otherStat"
 
-<<<<<<< HEAD
-sos_url_temp="http://waterservices.usgs.gov/nwis/dv/?format=waterml,1.1&sites="
-offering_temp='00003'
-property_temp='00060'
-drainage_url="http://waterservices.usgs.gov/nwis/site/?siteOutput=Expanded&site="
-
-startdate<-"1900-01-01"
-enddate<-"2012-10-01"
-#sites<-"05382257"
-#url2<-paste(sos_url,sites,'&startDT=',startdate,'&endDT=',enddate,'&statCd=',offering,'&parameterCd=',property,'&access=3',sep='')
-#x_obs <- getXMLWML1.1Data(url2)
-stats="GOF,GOFMonth,magnifSeven,magStat,flowStat,durStat,timStat,rateStat,otherStat"
-=======
 sites<-read.csv(header=F,colClasses=c("character"),text=sites)
 
 # Hardcode NWIS urls and parameters.
@@ -30,7 +17,6 @@ nwisDvUrl <- "http://waterservices.usgs.gov/nwis/dv/?format=waterml,1.1&sites="
 offering <- "00003"
 property <- "00060"
 drainage_url <- "http://waterservices.usgs.gov/nwis/site/?siteOutput=Expanded&site="
->>>>>>> b06827e5ef9d50b5fcba703a7b02e736e9580ff0
 
 Flownum <- (length(grep("magStat", stats)) * 94) + (length(grep("flowStat", stats)) * 13) + (length(grep("durStat", stats)) * 41) + (length(grep("timStat", stats)) * 
 	6) + (length(grep("rateStat", stats)) * 9) + (length(grep("otherStat", stats)) * 12)
@@ -66,43 +52,6 @@ for (i in 1:length(sites)) {
 	url2 <- paste(nwisDvUrl, site, "&startDT=", startdate, "&endDT=", enddate, "&statCd=", offering, "&parameterCd=", property, sep = "")
 	x_obs <- getXMLWML1.1Data(url2)
 
-<<<<<<< HEAD
-for (i in 1:length(a2)) {
-  startdate<-"2008-10-01"
-  enddate<-"2013-9-30"
-  interval<-''
-  latest<-''
-  sites=a[i]
-  url2<-paste(sos_url_temp,sites,'&startDT=',startdate,'&endDT=',enddate,'&statCd=',offering_temp,'&parameterCd=',property_temp,sep='')
-  x_obs <- getXMLWML1.1Data(url2)
-  
-  if (nrow(x_obs)>2) {
-    obs_data <- get_obsdata(x_obs)
-    obs_count<-nrow(obs_data)
-    cat(paste("get_obsdata run on x_obs for site",sites,obs_count,"\n",sep=" "))
-    drain_url<-paste(drainage_url,sites,sep="")
-    drain_area<-getDrainageArea(drain_url)
-    cat(paste("data and drainage area retrieved for site",sites,drain_area,"\n",sep=" "))
-    yv[i]<-as.character(min(obs_data$date))
-    ymaxv[i]<-as.character(max(obs_data$date))
-    cat(paste("dates calculated for site",sites,"\n",sep=" "))
-    
-    obs_data <- obs_data[,c('wy_val','date','discharge','month_val','year_val','day_val','jul_val')]
-    obs_count <- nrow(obs_data)
-    cat(paste("dfs created for site",sites,obs_count,"\n",sep=" "))
-    if (Flownum>0) {
-      ObsFlowStats[i,] <- FlowStatsAll(obs_data,drain_area)
-      cat(paste("Obs flow stats calculated for site",sites,"\n",sep=" "))
-    }
-    if (Magnifnum>0) {
-      magnifSevenObs[i,] <- magnifSeven(obs_data)
-      cat(paste("Obs mag7 stats calculated for site",sites,"\n",sep=" "))
-    }
-    comment <- ""
-  } else {
-    comment[i]<-"No observed data for this site"
-  }
-=======
 	if (nrow(x_obs) > 2) {
 		obs_data <- get_obsdata(x_obs)
 		obs_count <- nrow(obs_data)
@@ -129,7 +78,6 @@ for (i in 1:length(a2)) {
 	} else {
 		comment[i] <- "No observed data for this site"
 	}
->>>>>>> b06827e5ef9d50b5fcba703a7b02e736e9580ff0
 }
 
 statsout <- data.frame(sites, yv, ymaxv, magnifSevenObs, ObsFlowStats, comment, stringsAsFactors = FALSE)
