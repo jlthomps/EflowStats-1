@@ -25,7 +25,7 @@ nselog<-function(timeseries1,timeseries2) {
   
   # If zeroes in timeseries1, display message and delete zeroes
   if (czeros>0) {
-    cat("\n", czeros, "streamflows with a zero value were detected in this dataset. \nThese values will be removed before computing the \nNash-Sutcliffe efficiency value from the natural logs \nof the streamflows.")
+    cat("\n", czeros, "zero values were detected in this dataset. \nThese values will be removed before computing the \nNash-Sutcliffe efficiency value from the natural logs \nof the streamflows.")
   } else {} #Do nothing if no zeros
   nozeros<-subset(obsestq,obsestq$obs>0)
   

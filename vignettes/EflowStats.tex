@@ -174,7 +174,12 @@
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: package 'xtable' was built under R version 3.1.1}}\end{kframe}
+\end{knitrout}
 
 \renewenvironment{knitrout}{\begin{singlespace}}{\end{singlespace}}
 \renewcommand*\listfigurename{Figures}
@@ -263,8 +268,8 @@ The retrieved data is now present as a dataframe called \texttt{"}statsout\textt
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
    site_no lam1Obs tau2Obs tau3Obs tau4Obs ar1Obs phaseObs
-1 02177000   697.0    0.40    0.31    0.15   0.55    -1.15
-2 02178400   190.7    0.39    0.36    0.25   0.47    -1.05
+1 02177000  697.04    0.40    0.31    0.15   0.55    -1.15
+2 02178400  190.70    0.39    0.36    0.25   0.47    -1.05
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -402,9 +407,8 @@ There is also a function available to plot the monthly means for a daily dischar
 \hlstd{meanmonts}\hlkwb{<-}\hlkwd{monthlyMeanTs}\hlstd{(qfiletempf)}
 \hlkwd{plotMonthlyMean}\hlstd{(meanmonts,}\hlstr{'02178400'}\hlstd{)}
 \end{alltt}
-\end{kframe}\begin{figure}[]
-
-\includegraphics[width=\maxwidth]{figure/plotMonthlyMeans} \caption[Monthly Average Flow at station 02178400]{Monthly Average Flow at station 02178400\label{fig:plotMonthlyMeans}}
+\end{kframe}\begin{figure}
+\includegraphics[width=\maxwidth]{figure/plotMonthlyMeans-1} \caption[Monthly Average Flow at station 02178400]{Monthly Average Flow at station 02178400\label{fig:plotMonthlyMeans}}
 \end{figure}
 
 
@@ -425,8 +429,8 @@ To compare the NWIS observed data for a group of USGS stations with locally stor
 \hlstd{dataPath}\hlkwb{=}\hlstr{"C:/Users/jlthomps/Documents/R/JData/modeled/"}
 \hlstd{DiffStats} \hlkwb{<-} \hlkwd{CompareStats}\hlstd{(stats,}\hlkwc{sites}\hlstd{=sites,}\hlkwc{dataPath}\hlstd{=dataPath,}
                           \hlkwc{startDt}\hlstd{=startDt,}\hlkwc{endDt}\hlstd{=endDt)}
-\hlstd{stats1} \hlkwb{<-} \hlstd{DiffStats[[}\hlnum{1}\hlstd{]]}
-\hlstd{stats2} \hlkwb{<-} \hlstd{DiffStats[[}\hlnum{2}\hlstd{]]}
+\hlstd{statsLocal} \hlkwb{<-} \hlstd{DiffStats[[}\hlnum{1}\hlstd{]]}
+\hlstd{statsNWIS} \hlkwb{<-} \hlstd{DiffStats[[}\hlnum{2}\hlstd{]]}
 \hlstd{Diffstats} \hlkwb{<-} \hlstd{DiffStats[[}\hlnum{3}\hlstd{]]}
 \hlstd{RegGoFstats} \hlkwb{<-} \hlstd{DiffStats[[}\hlnum{4}\hlstd{]]}
 \hlstd{GoFstats} \hlkwb{<-} \hlstd{DiffStats[[}\hlnum{5}\hlstd{]]}
